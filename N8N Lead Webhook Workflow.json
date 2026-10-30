@@ -1,0 +1,96 @@
+{
+  "name": "N8N Lead Webhook Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "receive-leads",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -336,
+        0
+      ],
+      "id": "2cd5bd6b-7e38-4ccc-9bdc-012ee14fcfc8",
+      "name": "Webhook",
+      "webhookId": "9eb9dff7-2e6f-465d-8ff8-484ee1168f0b",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "AGCAKeauO2G0jBre",
+          "name": "Header Auth account 8"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bf4319fb-e17a-49a8-86d3-d329a641df0c",
+              "name": "leadId",
+              "value": "={{ $json.body.leadId }}",
+              "type": "string"
+            },
+            {
+              "id": "2bf5c981-2e0f-4880-813f-aebc6d042695",
+              "name": "name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "dfc69241-0036-47d3-a79d-c6b3550033b2",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "4cfbd82f-3a66-4459-8bae-2e0ff66ae1ac",
+              "name": "receivedAt",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -112,
+        0
+      ],
+      "id": "7bd6e5ed-5170-4c27-ae5c-30e31561e0f7",
+      "name": "Extract Lead Details"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract Lead Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "db7031ee-1e33-43bd-bf65-4e1a2edd9700",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a03c7678428ef19ededbf912f16f7d5798ec7b9ab4c17f2a2def6a9e791e7215"
+  },
+  "nodeGroups": [],
+  "id": "5DRjUrirJQZ6N0cH",
+  "tags": []
+}
